@@ -24,6 +24,10 @@ Integrate the Twitch login system into your amazing Angular project
 
 __app.module.ts__
 
+
+__WARNING ⚠️:__
+> ⚠️Remember that the host origin (domain) must be the same as the redirect url. Otherwise the pop-up window will not close ⚠️
+
 ```typescript
 import {BrowserModule} from '@angular/platform-browser';  
 import {NgModule} from '@angular/core';  
