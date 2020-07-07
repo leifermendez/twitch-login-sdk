@@ -1,24 +1,107 @@
-# TwitchLoginSdk
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
+  
+# Angular Twitch Login SDK
 
-## Code scaffolding
+Integrate the Twitch login system into your amazing Angular project
 
-Run `ng generate component component-name --project twitch-login-sdk` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project twitch-login-sdk`.
-> Note: Don't forget to add `--project twitch-login-sdk` or else it will be added to the default project in your `angular.json` file. 
+<img src="https://badgen.net/npm/dy/twitch-login-sdk" /> <img src="https://badgen.net/npm/v/twitch-login-sdk" />  <img src="https://img.shields.io/github/stars/leifermendez/twitch-login-sdk" /> <img src="https://img.shields.io/github/license/leifermendez/twitch-login-sdk" />
 
-## Build
+---
 
-Run `ng build twitch-login-sdk` to build the project. The build artifacts will be stored in the `dist/` directory.
+[Live demo](https://twitch-login-sdk.stackblitz.io)
 
-## Publishing
+[Stackblitz](https://stackblitz.com/edit/twitch-login-sdk)
 
-After building your library with `ng build twitch-login-sdk`, go to the dist folder `cd dist/twitch-login-sdk` and run `npm publish`.
+![](https://i.imgur.com/7UlkITH.png)
 
-## Running unit tests
+![](https://i.imgur.com/Nri25rj.png)
 
-Run `ng test twitch-login-sdk` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Install
+`npm i twitch-login-sdk@latest --save`
 
-## Further help
+### Import
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+__app.module.ts__
+
+```typescript
+import {BrowserModule} from '@angular/platform-browser';  
+import {NgModule} from '@angular/core';  
+import {AppComponent} from './app.component';  
+/** IMPORT **/
+import  {TwitchLoginSdkModule} from "twitch-login-sdk"; 👈
+  
+@NgModule({  
+  declarations: [  
+    AppComponent  
+  ],  
+  imports: [  
+    BrowserModule,   
+	TwitchLoginSdkModule.forRoot({ 
+		twitchId:  "xi7fl9ld6dlikhbv8xbfu77bzyjlkw", //<******* YOUR TWITCH_ID 👈
+		redirect:  "https://twitch-sdk-login.stackblitz.io" //<***** YOUR CALLBACK REDIRECT 👈
+	})
+  ],  
+  providers: [],  
+  bootstrap: [AppComponent]  
+})  
+export class AppModule {  
+}
+```
+__app.component.html__
+
+__scopes:__ Default 
+`user:read:email+openid+analytics:read:games+user:read:broadcast`
+
+```html
+
+<!-- Default -->
+<twitch-login
+(callback)="out($event)"
+label="Login Twitch 🚀"
+>
+</twitch-login>
+
+<!-- Pass scopes-->
+<twitch-login
+scopes="user:read:email+openid+analytics:read:games"
+(callback)="out($event)"
+label="Login Twitch 🚀"
+>
+</twitch-login>
+```
+
+### Use
+
+Use in your component
+```typescript
+import  {Component,  OnInit}  from  '@angular/core'; 
+
+@Component({  
+  selector: 'app-root',  
+  templateUrl: './app.component.html',  
+  styleUrls: ['./app.component.css']  
+})  
+export class AppComponent implements  OnInit {  
+	constructor(){}
+	
+	ngOnInit() {
+	
+	}
+	
+	public outCb:  any;
+	/** Callback Data **/
+	out = $event =>  {
+		this.outCb = $event;
+	};
+}
+```
+
+### Customize
+
+__buttom-twitch-login__: Classname for button
+
+![](https://i.imgur.com/7wguNoA.png)
+
+
+<a href="https://www.buymeacoffee.com/leifermendez" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
