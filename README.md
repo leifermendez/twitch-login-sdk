@@ -67,8 +67,7 @@ label="Login Twitch 🚀"
 <twitch-login
 scopes="user:read:email+openid+analytics:read:games"
 (callback)="out($event)"
-label="Login Twitch 🚀"
->
+label="Login Twitch 🚀">
 </twitch-login>
 ```
 
@@ -84,13 +83,13 @@ import  {Component,  OnInit}  from  '@angular/core';
   styleUrls: ['./app.component.css']  
 })  
 export class AppComponent implements  OnInit {  
+	public outCb:  any;
 	constructor(){}
 	
 	ngOnInit() {
 	
 	}
-	
-	public outCb:  any;
+
 	/** Callback Data **/
 	out($event): any   {
     	this.outCb = $event;
