@@ -92,9 +92,9 @@ export class AppComponent implements  OnInit {
 	
 	public outCb:  any;
 	/** Callback Data **/
-	out = $event =>  {
-		this.outCb = $event;
-	};
+	out($event): any   {
+    	this.outCb = $event;
+  	}
 }
 ```
 
